@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_sample/view/quiz_screen/quiz_screen.dart';
+import 'package:quiz_app_sample/view/splash_screeb/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,9 +11,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: QuizScreen(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()
+        //QuizScreen(),
+        );
   }
 }
