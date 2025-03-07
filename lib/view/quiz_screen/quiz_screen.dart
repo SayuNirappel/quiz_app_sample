@@ -2,12 +2,47 @@ import 'package:flutter/material.dart';
 
 void main() {}
 
-class QuizScreen extends StatelessWidget {
+class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
 
   @override
+  State<QuizScreen> createState() => _QuizScreenState();
+}
+
+class _QuizScreenState extends State<QuizScreen> {
+  List<Map> qandA = [
+    {
+      "question": "What is the capital of France ? ",
+      "o1": "Berlin",
+      "o2": "Mandrid",
+      "o3": "Paris",
+      "o4": "Rome",
+      "ca": "Paris"
+    },
+    {
+      "question": "Q1",
+      "o1": "o1",
+      "o2": "o2",
+      "o3": "o3",
+      "o4": "o4",
+      "ca": "o1"
+    },
+  ];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        actions: [
+          Text(
+            "${qandA.length}",
+            style: TextStyle(color: Colors.white),
+          ),
+          SizedBox(
+            width: 20,
+          )
+        ],
+      ),
       backgroundColor: Colors.black,
       body: Padding(
         padding: EdgeInsets.all(20),
@@ -18,11 +53,13 @@ class QuizScreen extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.grey.shade600,
                     borderRadius: BorderRadius.circular(10)),
-                child: Text(
-                  "data",
-                  style: TextStyle(color: Colors.white),
+                child: Center(
+                  child: Text(
+                    qandA[0]["question"],
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ),
@@ -36,7 +73,7 @@ class QuizScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Berlin",
+                      qandA[0]["o1"],
                       style: TextStyle(color: Colors.white),
                     ),
                     Icon(
@@ -57,7 +94,7 @@ class QuizScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Berlin",
+                      qandA[0]["o2"],
                       style: TextStyle(color: Colors.white),
                     ),
                     Icon(
@@ -78,7 +115,7 @@ class QuizScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Berlin",
+                      qandA[0]["o3"],
                       style: TextStyle(color: Colors.white),
                     ),
                     Icon(
@@ -99,7 +136,7 @@ class QuizScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Berlin",
+                      qandA[0]["o4"],
                       style: TextStyle(color: Colors.white),
                     ),
                     Icon(
