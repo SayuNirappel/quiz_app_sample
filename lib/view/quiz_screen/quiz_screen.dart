@@ -29,7 +29,6 @@ class _QuizScreenState extends State<QuizScreen> {
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
-          spacing: 20,
           children: [
             Expanded(
               child: Container(
@@ -39,13 +38,17 @@ class _QuizScreenState extends State<QuizScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: Text(
-                    qandA[0]["question"],
+                    "question",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
             Column(
+              spacing: 20,
               children: List.generate(
                   4,
                   (index) => Container(
