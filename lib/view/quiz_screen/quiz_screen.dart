@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app_sample/dummy_counter.dart';
 import 'package:quiz_app_sample/dummy_db.dart';
 import 'package:quiz_app_sample/model/question_model/question_model.dart';
 
 void main() {}
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+  const QuizScreen({
+    super.key,
+  });
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -13,14 +16,19 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   DummyDb data1 = DummyDb();
+  Flagcounter fc = Flagcounter();
+
+  int limit = 10;
   @override
   Widget build(BuildContext context) {
+    int flag = fc.flag;
+    int counter = fc.counter;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
         actions: [
           Text(
-            "10",
+            "$counter",
             style: TextStyle(color: Colors.white),
           ),
           SizedBox(
@@ -60,18 +68,31 @@ class _QuizScreenState extends State<QuizScreen> {
                             borderRadius: BorderRadius.circular(10)),
                         child: Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                data1.questions[index].options[index],
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Icon(
-                                Icons.circle_outlined,
-                                color: Colors.white,
-                              )
-                            ],
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                fc.counter++;
+                                fc.flag++;
+                                //fc.updatevalues();
+                              });
+                              Navigator.pushReplacement(
+                                  (context),
+                                  MaterialPageRoute(
+                                      builder: (context) => QuizScreen()));
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  data1.questions[fc.flag].options[index],
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Icon(
+                                  Icons.circle_outlined,
+                                  color: Colors.white,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       )),
