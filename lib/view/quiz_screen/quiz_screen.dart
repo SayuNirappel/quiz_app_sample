@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app_sample/dummy_db.dart';
+import 'package:quiz_app_sample/model/question_model/question_model.dart';
 
 void main() {}
 
@@ -10,6 +12,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
+  DummyDb data1 = DummyDb();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +41,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: Text(
-                    "question",
+                    data1.questions[0].question,
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -61,7 +64,7 @@ class _QuizScreenState extends State<QuizScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Option$index",
+                                data1.questions[index].options[index],
                                 style: TextStyle(color: Colors.white),
                               ),
                               Icon(
