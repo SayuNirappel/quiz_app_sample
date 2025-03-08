@@ -1,8 +1,8 @@
-class QuesionModel {
+class QuestionModel {
   String question;
   List<String> options;
   int answerIndex;
-  QuesionModel(
+  QuestionModel(
       {required this.question,
       required this.options,
       required this.answerIndex});
