@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app_sample/dummy_counter.dart';
 import 'package:quiz_app_sample/dummy_db.dart';
 import 'package:quiz_app_sample/model/question_model/question_model.dart';
+import 'package:quiz_app_sample/view/result_screen.dart/result_screen.dart';
 
 void main() {}
 
@@ -15,20 +16,21 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  DummyDb data1 = DummyDb();
+  DummyDb db1 = DummyDb();
   Flagcounter fc = Flagcounter();
 
   int limit = 10;
   @override
   Widget build(BuildContext context) {
-    int flag = fc.flag;
-    int counter = fc.counter;
+    int flag = fc.fCounter[0];
+    int counter = fc.fCounter[1];
+    int answercount = fc.fCounter[2];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
         actions: [
           Text(
-            "$counter",
+            "$counter / 10",
             style: TextStyle(color: Colors.white),
           ),
           SizedBox(
@@ -49,7 +51,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: Text(
-                    data1.questions[0].question,
+                    db1.questions[flag].question,
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -70,21 +72,39 @@ class _QuizScreenState extends State<QuizScreen> {
                           padding: const EdgeInsets.all(10),
                           child: InkWell(
                             onTap: () {
-                              setState(() {
-                                fc.counter++;
-                                fc.flag++;
-                                //fc.updatevalues();
-                              });
-                              Navigator.pushReplacement(
-                                  (context),
-                                  MaterialPageRoute(
-                                      builder: (context) => QuizScreen()));
+                              // Verifying result
+
+                              if (index == db1.questions[flag].answerIndex) {
+                                answercount++;
+                                fc.fCounter[2] = answercount;
+                              }
+
+                              // Building Next Page
+                              if (counter < 10) {
+                                counter++;
+                                flag++;
+                                fc.fCounter[0] = flag;
+                                fc.fCounter[1] = counter;
+
+                                Navigator.pushReplacement(
+                                    (context),
+                                    MaterialPageRoute(
+                                        builder: (context) => QuizScreen()));
+                              } else {
+                                fc.fCounter[0] = 0;
+                                fc.fCounter[1] = 1;
+
+                                Navigator.pushReplacement(
+                                    (context),
+                                    MaterialPageRoute(
+                                        builder: (context) => ResultScreen()));
+                              }
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  data1.questions[fc.flag].options[index],
+                                  db1.questions[flag].options[index],
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 Icon(

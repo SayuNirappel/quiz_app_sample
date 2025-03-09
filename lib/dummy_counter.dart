@@ -1,4 +1,8 @@
 class Flagcounter {
-  int flag = 0;
-  int counter = 1;
+  static final Flagcounter _instance = Flagcounter._internal();
+  factory Flagcounter() {
+    return _instance;
+  }
+  Flagcounter._internal();
+  List<int> fCounter = [0, 1, 0];
 }
