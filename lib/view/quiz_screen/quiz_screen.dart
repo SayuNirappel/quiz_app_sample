@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_sample/dummy_counter.dart';
 import 'package:quiz_app_sample/dummy_db.dart';
-import 'package:quiz_app_sample/model/question_model/question_model.dart';
+//import 'package:quiz_app_sample/model/question_model/question_model.dart';
 import 'package:quiz_app_sample/view/result_screen.dart/result_screen.dart';
 
 void main() {}
