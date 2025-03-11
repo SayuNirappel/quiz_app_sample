@@ -3,6 +3,8 @@ import 'package:quiz_app_sample/dummy_counter.dart';
 import 'package:quiz_app_sample/dummy_db.dart';
 //import 'package:quiz_app_sample/model/question_model/question_model.dart';
 import 'package:quiz_app_sample/view/result_screen.dart/result_screen.dart';
+import 'package:quiz_app_sample/view/splash_screeb/correct_splash.dart';
+import 'package:quiz_app_sample/view/splash_screeb/wrong_splash.dart';
 
 void main() {}
 
@@ -77,28 +79,71 @@ class _QuizScreenState extends State<QuizScreen> {
                               if (index == db1.questions[flag].answerIndex) {
                                 answercount++;
                                 fc.fCounter[2] = answercount;
+
+                                if (counter < 10) {
+                                  counter++;
+                                  flag++;
+                                  fc.fCounter[0] = flag;
+                                  fc.fCounter[1] = counter;
+
+                                  Navigator.pushReplacement(
+                                      (context),
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CorrectSplash()));
+                                } else {
+                                  fc.fCounter[0] = 0;
+                                  fc.fCounter[1] = 1;
+
+                                  Navigator.pushReplacement(
+                                      (context),
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ResultScreen()));
+                                }
+                              } else {
+                                if (counter < 10) {
+                                  counter++;
+                                  flag++;
+                                  fc.fCounter[0] = flag;
+                                  fc.fCounter[1] = counter;
+
+                                  Navigator.pushReplacement(
+                                      (context),
+                                      MaterialPageRoute(
+                                          builder: (context) => WrongSplash()));
+                                } else {
+                                  fc.fCounter[0] = 0;
+                                  fc.fCounter[1] = 1;
+
+                                  Navigator.pushReplacement(
+                                      (context),
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ResultScreen()));
+                                }
                               }
 
                               // Building Next Page
-                              if (counter < 10) {
-                                counter++;
-                                flag++;
-                                fc.fCounter[0] = flag;
-                                fc.fCounter[1] = counter;
+                              // if (counter < 10) {
+                              //   counter++;
+                              //   flag++;
+                              //   fc.fCounter[0] = flag;
+                              //   fc.fCounter[1] = counter;
 
-                                Navigator.pushReplacement(
-                                    (context),
-                                    MaterialPageRoute(
-                                        builder: (context) => QuizScreen()));
-                              } else {
-                                fc.fCounter[0] = 0;
-                                fc.fCounter[1] = 1;
+                              //   Navigator.pushReplacement(
+                              //       (context),
+                              //       MaterialPageRoute(
+                              //           builder: (context) => QuizScreen()));
+                              // } else {
+                              //   fc.fCounter[0] = 0;
+                              //   fc.fCounter[1] = 1;
 
-                                Navigator.pushReplacement(
-                                    (context),
-                                    MaterialPageRoute(
-                                        builder: (context) => ResultScreen()));
-                              }
+                              //   Navigator.pushReplacement(
+                              //       (context),
+                              //       MaterialPageRoute(
+                              //           builder: (context) => ResultScreen()));
+                              // }
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
