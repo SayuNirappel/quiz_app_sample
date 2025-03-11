@@ -44,6 +44,7 @@ class _QuizScreenState extends State<QuizScreen> {
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: Container(
